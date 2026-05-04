@@ -1,0 +1,77 @@
+:root {
+  --gold: #E8C461;
+  --gold-light: #F4DC8E;
+  --gold-dim: #B8923A;
+  --ochre: #D87538;
+  --sienna: #A04420;
+  --black: #050302;
+  --deep: #0C0805;
+  --stone: #1F160C;
+  --terracotta: #D87838;
+  --text-bright: #FFFAEC;
+  --text-body: #E8DFC8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--text-body);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  overflow-x: hidden;
+  cursor: default;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+a { text-decoration: none; }
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.section-label {
+  font-family: "Cinzel", serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+  display: block;
+  font-weight: 600;
+}
+.section-title {
+  font-family: "Cinzel", serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-bright);
+  margin-bottom: 1.5rem;
+}
+.section-body {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-body);
+  max-width: 600px;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes twinkle { to { opacity:0.05; transform:scale(0.5); } }
+@keyframes scrollPulse {
+  0%,100% { opacity:0.3; transform:scaleY(0.6); transform-origin:top; }
+  50% { opacity:1; transform:scaleY(1); }
+}
+@keyframes scrollTimeline {
+  from { transform:translateX(0); }
+  to { transform:translateX(-50%); }
+}

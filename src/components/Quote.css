@@ -1,0 +1,36 @@
+#quote {
+  padding: 8rem 4rem;
+  text-align: center;
+  position: relative;
+  background: var(--deep);
+  border-top: 1px solid rgba(201,168,76,0.1);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+.quote-mark {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 8rem;
+  line-height: 0.5;
+  color: rgba(201,168,76,0.1);
+  display: block;
+  margin-bottom: 2rem;
+}
+.quote-text {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-style: italic;
+  color: var(--text-bright);
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.quote-attr {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+@media (max-width: 900px) {
+  #quote { padding: 5rem 1.5rem; }
+  .quote-mark { font-size: 6rem; }
+}

@@ -1,0 +1,148 @@
+#resources {
+  padding: 8rem 4rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.resources-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+}
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  margin-bottom: 3rem;
+  overflow-x: auto;
+}
+.tab-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--text-body);
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+.tab-btn:hover { color: var(--text-bright); }
+.tab-panel { animation: fadeIn 0.4s ease; }
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.doc-card {
+  border: 1px solid rgba(201,168,76,0.15);
+  padding: 1.8rem;
+  background: linear-gradient(160deg, rgba(42,31,20,0.3), rgba(10,7,5,0.7));
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.doc-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(201,168,76,0.08), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.doc-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+.doc-card:hover::after { opacity: 1; }
+.doc-type {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.doc-type-icon { font-size: 0.9rem; }
+.doc-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--text-bright);
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+.doc-meta { font-size: 0.85rem; color: var(--text-body); font-style: italic; }
+.upload-zone {
+  border: 2px dashed rgba(201,168,76,0.25);
+  padding: 4rem;
+  text-align: center;
+  background: rgba(42,31,20,0.2);
+  transition: all 0.3s;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+.upload-zone:hover { border-color: rgba(201,168,76,0.5); background: rgba(42,31,20,0.4); }
+.upload-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
+.upload-text {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+}
+.upload-sub { font-size: 0.95rem; color: var(--text-body); }
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+.video-card {
+  border: 1px solid rgba(201,168,76,0.15);
+  background: var(--stone);
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.video-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+.video-thumb {
+  height: 180px;
+  background: linear-gradient(135deg, #1A1008, #2A1A0A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.video-thumb-text { font-size: 4rem; opacity: 0.2; }
+.play-btn {
+  position: absolute;
+  width: 56px; height: 56px;
+  background: rgba(201,168,76,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--black);
+  transition: all 0.3s;
+}
+.video-card:hover .play-btn { background: var(--gold); transform: scale(1.1); }
+.video-info { padding: 1.2rem; }
+.video-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: var(--text-bright);
+  margin-bottom: 0.4rem;
+}
+.video-meta { font-size: 0.85rem; color: var(--text-body); }
+@media (max-width: 900px) {
+  #resources { padding: 5rem 1.5rem; }
+  .tab-btn { padding: 0.8rem 1rem; font-size: 0.65rem; letter-spacing: 0.08em; }
+  .upload-zone { padding: 2.5rem 1.5rem; }
+  .video-grid { grid-template-columns: 1fr; }
+}

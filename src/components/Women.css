@@ -1,0 +1,83 @@
+#women {
+  padding: 10rem 4rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.women-header { margin-bottom: 5rem; max-width: 600px; }
+.profiles-row {
+  display: flex;
+  gap: 3rem;
+  overflow-x: auto;
+  padding-bottom: 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) transparent;
+}
+.profile-card {
+  min-width: 280px;
+  flex-shrink: 0;
+  position: relative;
+  border: 1px solid rgba(201,168,76,0.15);
+  padding: 2.5rem 2rem;
+  background: linear-gradient(160deg, rgba(42,31,20,0.5), rgba(18,12,7,0.9));
+  transition: all 0.4s;
+  cursor: pointer;
+}
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--ochre));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.profile-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-4px);
+  background: linear-gradient(160deg, rgba(42,31,20,0.8), rgba(18,12,7,0.95));
+}
+.profile-card:hover::before { transform: scaleX(1); }
+.profile-icon {
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dim), var(--sienna));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(201,168,76,0.3);
+}
+.profile-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: var(--text-bright);
+  margin-bottom: 0.3rem;
+}
+.profile-title {
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  letter-spacing: 0.1em;
+  font-family: 'Cinzel', serif;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.profile-era {
+  font-size: 0.75rem;
+  color: var(--text-body);
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+.profile-bio {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.7;
+}
+@media (max-width: 900px) {
+  #women { padding: 5rem 1.5rem; }
+  .women-header { margin-bottom: 3rem; }
+  .profile-card { min-width: 260px; padding: 2rem 1.5rem; }
+  .profiles-row { gap: 1.5rem; }
+}
