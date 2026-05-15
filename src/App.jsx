@@ -2,6 +2,7 @@ import './App.css'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Mission from './components/Mission'
+import AncientShowcase from './components/AncientShowcase'
 import Civilizations from './components/Civilizations'
 import Women from './components/Women'
 import NorthAmerica from './components/NorthAmerica'
@@ -17,6 +18,7 @@ function App() {
       <Nav />
       <Hero />
       <Mission />
+      <AncientShowcase />
       <Civilizations />
       <Women />
       <NorthAmerica />
