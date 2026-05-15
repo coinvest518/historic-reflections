@@ -35,6 +35,7 @@ export default function Nav() {
         <li><a href="#mission" onClick={closeMenu}>Our Mission</a></li>
         <li><a href="#civilizations" onClick={closeMenu}>Civilizations</a></li>
         <li><a href="#women" onClick={closeMenu}>Historians</a></li>
+        <li><a href="#north-america" onClick={closeMenu}>Nations</a></li>
         <li><a href="#timeline" onClick={closeMenu}>Timeline</a></li>
         <li><a href="#resources" onClick={closeMenu}>Resources</a></li>
         <li><a href="#cta-section" onClick={closeMenu}>Join</a></li>

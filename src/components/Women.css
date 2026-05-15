@@ -11,10 +11,13 @@
   padding-bottom: 2rem;
   scrollbar-width: thin;
   scrollbar-color: var(--gold-dim) transparent;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 .profile-card {
   min-width: 280px;
   flex-shrink: 0;
+  scroll-snap-align: start;
   position: relative;
   border: 1px solid rgba(201,168,76,0.15);
   padding: 2.5rem 2rem;

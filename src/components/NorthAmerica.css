@@ -1,0 +1,115 @@
+#north-america {
+  padding: 10rem 4rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.na-text {
+  max-width: 720px;
+  margin-bottom: 4rem;
+}
+
+.na-body-2 {
+  margin-top: 1.2rem;
+}
+
+.na-body-2 em {
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+.na-image-wrap {
+  position: relative;
+  width: 100%;
+  border: 1px solid rgba(201,168,76,0.2);
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+
+.na-image {
+  width: 100%;
+  max-height: 560px;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+  background: rgba(5,3,2,0.5);
+}
+
+.na-image-wrap:hover .na-image {
+  transform: scale(1.02);
+}
+
+.na-image-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(5,3,2,0.5) 0%, transparent 25%, transparent 75%, rgba(5,3,2,0.5) 100%),
+    linear-gradient(to bottom, transparent 60%, rgba(5,3,2,0.7) 100%);
+  pointer-events: none;
+}
+
+/* Nations tags */
+.na-nations {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.na-nations-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.na-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.na-tag {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid rgba(201,168,76,0.2);
+  background: rgba(31,22,12,0.4);
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.na-tag:hover {
+  border-color: rgba(201,168,76,0.5);
+  background: rgba(31,22,12,0.7);
+  transform: translateY(-2px);
+}
+
+.na-tag-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  color: var(--text-bright);
+  letter-spacing: 0.05em;
+}
+
+.na-tag-region {
+  font-size: 0.68rem;
+  color: var(--ochre);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'Cinzel', serif;
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 900px) {
+  #north-america { padding: 6rem 1.5rem; }
+  .na-image { max-height: 480px; object-position: center center; }
+}
+
+@media (max-width: 600px) {
+  #north-america { padding: 5rem 1.2rem; }
+  .na-image { max-height: 400px; }
+  .na-tag { padding: 0.5rem 0.9rem; }
+}

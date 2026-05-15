@@ -1,73 +1,191 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import './Resources.css';
+import AncientCivilizationsBlog from './Blog/AncientCivilizationsBlog';
+import MelanatedPeoplesBlog from './Blog/MelanatedPeoplesBlog';
+import GenocideLandGrabBlog from './Blog/GenocideLandGrabBlog';
 
-const documents = [
-  { icon: '📄', type: 'Primary Source', title: 'The Ipuwer Papyrus — Ancient Egyptian Lamentations', meta: 'c. 1800 BCE · Kemet / Egypt' },
-  { icon: '🗺️', type: 'Historical Map', title: 'The Kingdom of Mali at Its Greatest Extent', meta: 'c. 1300 CE · West Africa' },
-  { icon: '📖', type: 'Academic Paper', title: 'Matrilineal Succession in Nubian Kingdoms', meta: 'Dr. Aminata Kouyaté · 2019' },
-  { icon: '🪨', type: 'Archaeological Evidence', title: 'Blombos Cave Ochre Engravings — Oldest Known Art', meta: 'c. 75,000 BCE · South Africa' },
-  { icon: '📜', type: 'Oral History', title: 'Dreamtime Creation Stories — Arrernte Nation', meta: 'Recorded 1988 · Central Australia' },
-  { icon: '🏛️', type: 'Manuscript', title: 'Timbuktu Manuscripts — Astronomy & Mathematics', meta: 'c. 1200–1500 CE · Songhai Empire' },
+const blogPosts = [
+  {
+    id: 'ancient-civilizations',
+    icon: '📚',
+    type: 'Study Packet',
+    title: 'Ancient Civilizations: Rise, Collapse & Legacy',
+    meta: 'Mesopotamia · Egypt · Bronze Age Collapse · Greece · Persia · Rome',
+    component: AncientCivilizationsBlog,
+  },
+  {
+    id: 'melanated-peoples',
+    icon: '🌎',
+    type: 'Historical Record',
+    title: 'The Melanated Peoples of North America: The Original Nations',
+    meta: 'Mound Builders · Cahokia · Trade Networks · Colonization & Survival',
+    component: MelanatedPeoplesBlog,
+  },
+  {
+    id: 'genocide-landgrab',
+    icon: '⚖️',
+    type: 'Historical Document',
+    title: 'Genocide, Land Grab & Denationalization in the Americas',
+    meta: 'Doctrine of Discovery · Indian Removal Act · Boarding Schools · Resistance',
+    component: GenocideLandGrabBlog,
+  },
 ];
 
 const videos = [
   { thumb: '𓂀', title: 'The Queens of Ancient Nubia — Full Documentary', meta: 'YouTube · 58 min · Ancient History' },
-  { thumb: '🦅', title: 'Indigenous Women Leaders of the Americas', meta: 'YouTube · 44 min · Indigenous History' },
+  { thumb: '🦅', title: 'Indigenous Leaders of the Americas', meta: 'YouTube · 44 min · Indigenous History' },
   { thumb: '🌿', title: 'Songlines: Aboriginal Navigation & Knowledge Systems', meta: 'YouTube · 32 min · Aboriginal Australia' },
-  { thumb: '📚', title: 'Zoom Lecture: Timbuktu and the African Intellectual Tradition', meta: 'Zoom Recording · 1h 15min · Dr. Fatima Sissoko' },
+  { thumb: '📚', title: 'Timbuktu & African Intellectual Tradition', meta: 'Zoom Recording · 1h 15min · Dr. Fatima Sissoko' },
 ];
 
+// Lesson plans built from the 3 study PDFs
 const lessons = [
-  { icon: '🏫', type: 'K–5 Lesson Plan', title: 'Introduction to Ancient Africa: Stories for Young Learners', meta: '45 min · Grades 3–5 · Printable worksheets included' },
-  { icon: '🏫', type: 'Middle School', title: 'Queens & Warriors: Women Who Led Ancient Nations', meta: '2 class periods · Grades 6–8 · Discussion guide' },
-  { icon: '🎓', type: 'High School', title: 'Colonialism & Memory: Who Decides What History Gets Told?', meta: '5-day unit · Grades 9–12 · Primary sources included' },
-  { icon: '🎓', type: 'College Level', title: 'African Intellectual Tradition: Timbuktu to the Present', meta: 'Seminar course · College · Full syllabus + reading list' },
+  {
+    icon: '📚',
+    type: 'From: Ancient Civilizations Study Packet',
+    title: 'Ancient Civilizations: Rise, Collapse & Rebirth',
+    meta: 'Grades 6–12 · 3 class periods',
+    objectives: [
+      'Identify the geographic and agricultural foundations of Mesopotamia and Ancient Egypt',
+      'Explain the causes of the Late Bronze Age Collapse (1200 BCE)',
+      'Compare governance systems: democracy in Athens vs. empire in Persia and Rome',
+      'Trace how culture spread through Alexander\'s conquests (cultural diffusion)',
+    ],
+    keyTopics: 'Mesopotamia · Ancient Egypt · Sea Peoples · Classical Greece · Persian Empire · Rome · Alexander the Great',
+  },
+  {
+    icon: '🌎',
+    type: 'From: Melanated Peoples of North America',
+    title: 'Indigenous North America: Cities, Knowledge & Survival',
+    meta: 'Grades 6–12 · 3 class periods',
+    objectives: [
+      'Describe the engineering and governance of Cahokia — one of North America\'s largest pre-contact cities',
+      'Identify how Indigenous nations used astronomy, trade networks, and agriculture',
+      'Trace the timeline from Watson Brake (3500 BCE) through Mississippian culture to European contact',
+      'Analyze how Indigenous peoples have preserved sovereignty and culture despite colonization',
+    ],
+    keyTopics: 'Mound Builders · Cahokia · Woodhenge · Hopewell Networks · Long-Distance Trade · Colonization & Resilience',
+  },
+  {
+    icon: '⚖️',
+    type: 'From: Genocide, Land Grab & Denationalization',
+    title: 'Colonialism & Its Consequences in the Americas',
+    meta: 'Grades 9–12 · 5-day unit',
+    objectives: [
+      'Explain the Doctrine of Discovery and how it was used to justify land theft',
+      'Analyze the Indian Removal Act (1830) and Trail of Tears as documented genocide',
+      'Examine how boarding schools were used as tools of cultural erasure ("Denationalization")',
+      'Connect historical policies to modern Indigenous sovereignty and land rights movements',
+    ],
+    keyTopics: 'Doctrine of Discovery · Taíno & Maya · Encomienda · Indian Removal Act · Boarding Schools · Modern Resistance',
+  },
 ];
+
 
 export default function Resources() {
   const [activeTab, setActiveTab] = useState('documents');
-  const [uploadName, setUploadName] = useState(null);
-  const uploadRef = useRef(null);
+  const [activeBlog, setActiveBlog] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const wrapperRef = useRef(null);
 
-  function handleDragOver(e) { e.preventDefault(); uploadRef.current.style.borderColor = 'rgba(201,168,76,0.8)'; }
-  function handleDragLeave() { uploadRef.current.style.borderColor = ''; }
-  function handleDrop(e) {
-    e.preventDefault();
-    uploadRef.current.style.borderColor = '';
-    const files = e.dataTransfer.files;
-    if (files.length) setUploadName(files[0].name);
+  const closeBlog = useCallback(() => {
+    setActiveBlog(null);
+    // After React re-renders the section, scroll back to #resources
+    setTimeout(() => {
+      document.getElementById('resources')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }, 0);
+  }, []);
+
+  // Lock body scroll and handle Escape key when blog is open
+  useEffect(() => {
+    if (!activeBlog) {
+      document.body.style.overflow = '';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => { if (e.key === 'Escape') closeBlog(); };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [activeBlog, closeBlog]);
+
+  // Reading progress bar
+  const handleScroll = useCallback(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const pct = el.scrollTop / (el.scrollHeight - el.clientHeight);
+    setProgress(Math.min(100, Math.round(pct * 100)));
+  }, []);
+
+  // If a blog is active, show it
+  if (activeBlog) {
+    const blog = blogPosts.find(b => b.id === activeBlog);
+    if (blog) {
+      const BlogComponent = blog.component;
+      return (
+        <div className="blog-view-wrapper" ref={wrapperRef} onScroll={handleScroll}>
+          <div className="blog-progress-bar" style={{ width: `${progress}%` }} />
+          <div className="blog-nav-bar">
+            <a href="#resources" className="blog-nav-logo" onClick={closeBlog} aria-label="Back to HistoricReflections">
+              Historic<span>Reflections</span>
+            </a>
+            <button
+              className="blog-close-btn"
+              onClick={closeBlog}
+              aria-label="Close article and return to resources"
+            >
+              ← Back to Resources
+            </button>
+          </div>
+          <BlogComponent />
+        </div>
+      );
+    }
   }
 
   const tabs = [
-    { key: 'documents', label: '📜 Documents & Evidence' },
+    { key: 'documents', label: '📚 Study Resources' },
     { key: 'videos', label: '🎬 Video Library' },
-    { key: 'upload', label: '⬆️ Upload Resources' },
-    { key: 'lessons', label: '📚 Lesson Plans' },
+    { key: 'lessons', label: '🏫 Lesson Plans' },
   ];
 
   return (
     <section id="resources">
       <div className="resources-header">
         <span className="section-label">The Archive</span>
-        <h2 className="section-title">Documents, Media & Resources</h2>
-        <p className="section-body" style={{ margin: '0 auto' }}>Explore primary sources, upload presentations, and access educational videos — all in one place.</p>
+        <h2 className="section-title">Documents, Media & Learning</h2>
+        <p className="section-body" style={{ margin: '0 auto' }}>Explore comprehensive learning resources, primary sources, and video documentaries grounded in historical evidence and scholarship.</p>
       </div>
 
       <div className="tab-bar">
         {tabs.map(t => (
-          <button key={t.key} className={`tab-btn ${activeTab === t.key ? 'active' : ''}`} onClick={() => setActiveTab(t.key)}>{t.label}</button>
+          <button 
+            key={t.key} 
+            className={`tab-btn ${activeTab === t.key ? 'active' : ''}`} 
+            onClick={() => setActiveTab(t.key)}
+          >
+            {t.label}
+          </button>
         ))}
       </div>
 
       {activeTab === 'documents' && (
         <div className="tab-panel active">
           <div className="doc-grid">
-            {documents.map((d, i) => (
-              <div className="doc-card" key={i}>
-                <div className="doc-type"><span className="doc-type-icon">{d.icon}</span> {d.type}</div>
-                <div className="doc-title">{d.title}</div>
-                <div className="doc-meta">{d.meta}</div>
-              </div>
+            {blogPosts.map((b, i) => (
+              <button
+                key={i}
+                className="doc-card doc-card-blog"
+                onClick={() => setActiveBlog(b.id)}
+                aria-label={`Open: ${b.title}`}
+              >
+                <div className="doc-type"><span className="doc-type-icon">{b.icon}</span> {b.type}</div>
+                <div className="doc-title">{b.title}</div>
+                <div className="doc-meta">{b.meta}</div>
+                <div className="doc-blog-badge">→ Read Article</div>
+              </button>
             ))}
           </div>
         </div>
@@ -92,42 +210,20 @@ export default function Resources() {
         </div>
       )}
 
-      {activeTab === 'upload' && (
-        <div className="tab-panel active">
-          <div className="doc-grid" style={{ marginBottom: '2rem' }}>
-            <div className="doc-card">
-              <div className="doc-type"><span className="doc-type-icon">📊</span> PowerPoint</div>
-              <div className="doc-title">African Civilizations — Grade 8 Lesson Deck</div>
-              <div className="doc-meta">Uploaded by Ms. Johnson · 34 slides</div>
-            </div>
-            <div className="doc-card">
-              <div className="doc-type"><span className="doc-type-icon">📄</span> PDF</div>
-              <div className="doc-title">Indigenous Women&apos;s Rights Timeline — Canada & Australia</div>
-              <div className="doc-meta">Uploaded by Community Archive · 12 pages</div>
-            </div>
-          </div>
-          <div
-            className="upload-zone"
-            ref={uploadRef}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          >
-            <div className="upload-icon">⬆️</div>
-            <div className="upload-text">{uploadName ? `✓ ${uploadName} ready to upload` : 'Upload Your Resources'}</div>
-            <div className="upload-sub">{uploadName ? 'Admin review required before publishing' : 'PowerPoints, PDFs, Word Documents · Max 50MB · Drag & drop or click'}</div>
-          </div>
-        </div>
-      )}
-
       {activeTab === 'lessons' && (
         <div className="tab-panel active">
           <div className="doc-grid">
             {lessons.map((l, i) => (
-              <div className="doc-card" key={i}>
+              <div className="doc-card lesson-card" key={i}>
                 <div className="doc-type"><span className="doc-type-icon">{l.icon}</span> {l.type}</div>
                 <div className="doc-title">{l.title}</div>
                 <div className="doc-meta">{l.meta}</div>
+                <ul className="lesson-objectives">
+                  {l.objectives.map((obj, j) => (
+                    <li key={j}>{obj}</li>
+                  ))}
+                </ul>
+                <div className="lesson-topics">{l.keyTopics}</div>
               </div>
             ))}
           </div>

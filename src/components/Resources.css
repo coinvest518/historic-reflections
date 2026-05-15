@@ -55,6 +55,41 @@
 }
 .doc-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
 .doc-card:hover::after { opacity: 1; }
+
+/* Real PDF cards */
+a.doc-card { text-decoration: none; display: block; }
+.doc-card-pdf {
+  border-color: rgba(201,168,76,0.3);
+  background: linear-gradient(160deg, rgba(52,36,16,0.5), rgba(12,8,4,0.85));
+}
+.doc-card-pdf:hover { border-color: var(--gold); box-shadow: 0 0 24px rgba(201,168,76,0.12); }
+.doc-pdf-badge {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 0.3rem 0.7rem;
+  transition: all 0.3s;
+}
+.doc-card-pdf:hover .doc-pdf-badge {
+  background: rgba(201,168,76,0.12);
+  border-color: var(--gold);
+}
+
+/* Section sub-labels in documents tab */
+.pdf-section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 1.2rem;
+  opacity: 0.8;
+}
 .doc-type {
   font-family: 'Cinzel', serif;
   font-size: 0.65rem;
@@ -76,7 +111,45 @@
   line-height: 1.4;
 }
 .doc-meta { font-size: 0.85rem; color: var(--text-body); font-style: italic; }
-.upload-zone {
+
+/* Lesson plan cards */
+.lesson-card {
+  cursor: default;
+}
+.lesson-card:hover { transform: none; }
+.lesson-objectives {
+  list-style: none;
+  margin-top: 1.2rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.lesson-objectives li {
+  font-size: 0.88rem;
+  color: var(--text-body);
+  line-height: 1.55;
+  padding-left: 1rem;
+  position: relative;
+}
+.lesson-objectives li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dim);
+  font-family: 'Cinzel', serif;
+}
+.lesson-topics {
+  margin-top: 1.2rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  border-top: 1px solid rgba(201,168,76,0.1);
+  padding-top: 1rem;
+  line-height: 1.8;
+}
   border: 2px dashed rgba(201,168,76,0.25);
   padding: 4rem;
   text-align: center;
@@ -140,6 +213,135 @@
   margin-bottom: 0.4rem;
 }
 .video-meta { font-size: 0.85rem; color: var(--text-body); }
+
+/* Blog Card Styles */
+.pdf-section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 2rem;
+  margin-top: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  font-weight: 600;
+}
+
+.doc-card-blog {
+  background: linear-gradient(160deg, rgba(42, 31, 20, 0.5), rgba(18, 12, 7, 0.8));
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.doc-card-blog:hover {
+  border-color: var(--gold);
+  background: linear-gradient(160deg, rgba(42, 31, 20, 0.7), rgba(18, 12, 7, 0.95));
+  transform: translateY(-4px);
+}
+
+.doc-blog-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(201, 168, 76, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0.7; /* always visible — needed for mobile/touch */
+  transition: opacity 0.3s;
+}
+
+.doc-card-blog:hover .doc-blog-badge {
+  opacity: 1;
+}
+
+/* Blog View Wrapper — full-screen overlay */
+.blog-view-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 10000; /* above body::before noise at 9999 */
+  background: var(--black, #050302);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Reading progress bar */
+.blog-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-light));
+  z-index: 10001;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* Blog overlay — sticky nav bar (logo + back button) */
+.blog-nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.9rem 2rem;
+  background: rgba(5, 3, 2, 0.97);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.blog-nav-logo {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.95rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-shadow: 0 0 20px rgba(232, 196, 97, 0.3);
+  flex-shrink: 0;
+}
+
+.blog-nav-logo span {
+  color: var(--text-bright);
+}
+
+.blog-close-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  color: var(--gold-light);
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+.blog-close-btn:hover {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+@media (max-width: 600px) {
+  .blog-nav-bar { padding: 0.8rem 1.2rem; }
+  .blog-nav-logo { font-size: 0.8rem; }
+  .blog-close-btn { font-size: 0.6rem; padding: 0.4rem 0.8rem; }
+}
+
 @media (max-width: 900px) {
   #resources { padding: 5rem 1.5rem; }
   .tab-btn { padding: 0.8rem 1rem; font-size: 0.65rem; letter-spacing: 0.08em; }

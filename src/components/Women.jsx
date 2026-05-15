@@ -28,9 +28,9 @@ export default function Women() {
   return (
     <section id="women">
       <div className="women-header reveal" ref={headerRef}>
-        <span className="section-label">The Knowledge-Keepers</span>
-        <h2 className="section-title">Women Who Carried Civilizations</h2>
-        <p className="section-body">Queens, warriors, scholars, and griots — these women didn&apos;t just witness history. They made it.</p>
+        <span className="section-label">Influential Leaders & Scholars</span>
+        <h2 className="section-title">Transformative Figures in History</h2>
+        <p className="section-body">Kings, queens, warriors, mathematicians, diplomats, and griots — visionary leaders whose brilliance shaped civilizations and reshaped history.</p>
       </div>
       <div className="profiles-row">
         {profiles.map((p, i) => (

@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Mission from './components/Mission'
 import Civilizations from './components/Civilizations'
 import Women from './components/Women'
+import NorthAmerica from './components/NorthAmerica'
 import Timeline from './components/Timeline'
 import Resources from './components/Resources'
 import Quote from './components/Quote'
@@ -18,6 +19,7 @@ function App() {
       <Mission />
       <Civilizations />
       <Women />
+      <NorthAmerica />
       <Timeline />
       <Resources />
       <Quote />

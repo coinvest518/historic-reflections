@@ -19,11 +19,13 @@
 .mission-inner {
   position: absolute;
   top: 2rem; left: 2rem; right: -2rem; bottom: -2rem;
-  background: linear-gradient(135deg, var(--stone), #1A1008);
+  background: linear-gradient(160deg, rgba(31,22,12,0.95), rgba(10,7,5,0.98));
   border: 1px solid rgba(201,168,76,0.3);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
   overflow: hidden;
 }
 .mission-inner::before {
@@ -31,8 +33,44 @@
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(201,168,76,0.02) 40px, rgba(201,168,76,0.02) 41px),
-    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,168,76,0.02) 40px, rgba(201,168,76,0.02) 41px);
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(201,168,76,0.025) 40px, rgba(201,168,76,0.025) 41px),
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,168,76,0.025) 40px, rgba(201,168,76,0.025) 41px);
+  pointer-events: none;
+}
+/* Subtle radial glow behind the ankh */
+.mission-inner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.mission-ankh {
+  width: 110px;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 18px rgba(201,168,76,0.2));
+}
+.mission-inscription {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.4);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+.mission-inscription-divider {
+  color: rgba(201,168,76,0.25);
+  font-size: 0.8rem;
 }
 .ankh-symbol {
   font-size: 10rem;

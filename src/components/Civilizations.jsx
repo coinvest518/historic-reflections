@@ -8,9 +8,11 @@ const civs = [
   { era: '1400 BCE – 1533 CE', name: 'Indigenous Americas', desc: 'Aztec, Maya, Inca, and hundreds of North American nations — master astronomers, engineers, farmers, and diplomats.', icon: '🦅', bg: 'linear-gradient(135deg,#302010,#150E05)' },
   { era: '2500 BCE – 1500 BCE', name: 'Kingdom of Nubia / Kush', desc: 'The Black Pharaohs of Kush who ruled Egypt. A matrilineal society where queens — the Kandakes — held supreme power.', icon: '🏛️', bg: 'linear-gradient(135deg,#250D35,#100520)' },
   { era: '2600 BCE – 1900 BCE', name: 'Indus Valley Civilization', desc: 'Advanced urban planning, sanitation, and trade networks in South Asia — predating classical antiquity by a thousand years.', icon: '🌺', bg: 'linear-gradient(135deg,#352010,#1A1005)' },
+  { era: '500 BCE – 323 BCE', name: 'Classical Greece', desc: 'The birthplace of democracy, philosophy, and theatre. Yet its intellectual roots trace directly to Kemet — Pythagoras, Plato, and Aristotle all studied in Africa.', icon: '🏛', bg: 'linear-gradient(135deg,#1A2040,#0A0F20)' },
+  { era: '550 BCE – 330 BCE', name: 'Persian (Achaemenid) Empire', desc: 'The largest empire the ancient world had yet seen — pioneering religious tolerance, human rights declarations, and multi-ethnic administration under Cyrus the Great.', icon: '🔱', bg: 'linear-gradient(135deg,#2A1530,#100A18)' },
 ];
 
-const delays = ['', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3'];
+const delays = ['', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3', 'reveal-delay-1', 'reveal-delay-2'];
 
 export default function Civilizations() {
   const itemRefs = useRef([]);

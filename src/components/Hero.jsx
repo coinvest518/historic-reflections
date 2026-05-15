@@ -21,7 +21,14 @@ export default function Hero() {
 
   return (
     <section id="hero">
-      <div className="hero-bg"></div>
+      <div className="hero-bg">
+        <img
+          className="hero-bg-img"
+          src="/images/figureshero.png"
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
       <div className="stars" ref={starsRef}></div>
 
       <div className="pyramid-container">
@@ -45,13 +52,13 @@ export default function Hero() {
       <div className="horizon"></div>
 
       <div className="hero-content">
-        <span className="hero-eyebrow">Ancient Civilizations · Indigenous Peoples · Women in History</span>
+        <span className="hero-eyebrow">Ancient Civilizations · Indigenous Peoples · Untold Histories</span>
         <h1 className="hero-title">
           Historic<em>Reflections</em>
         </h1>
         <div className="hero-divider"></div>
         <p className="hero-subtitle">
-          Before the textbooks — there was truth. Discover the untold histories of ancient Africa, Aboriginal peoples, and Indigenous civilizations, as told through the wisdom of women historians and knowledge-keepers.
+          Before the textbooks — there was truth. Discover the untold histories of ancient Africa, Aboriginal peoples, and Indigenous civilizations, preserved by descendants and scholars committed to historical accuracy.
         </p>
         <div className="hero-cta">
           <a href="#civilizations" className="btn-primary">Explore Civilizations</a>
@@ -59,10 +66,11 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="scroll-hint">
+      <div className="scroll-hint" onClick={() => document.getElementById('mission').scrollIntoView({ behavior: 'smooth' })} role="button" tabIndex={0} onKeyDown={e => e.key === 'Enter' && document.getElementById('mission').scrollIntoView({ behavior: 'smooth' })}>
         <span>Scroll</span>
         <div className="scroll-line"></div>
       </div>
+
     </section>
   );
 }
