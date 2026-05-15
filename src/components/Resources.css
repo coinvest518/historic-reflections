@@ -150,6 +150,7 @@ a.doc-card { text-decoration: none; display: block; }
   padding-top: 1rem;
   line-height: 1.8;
 }
+.upload-zone {
   border: 2px dashed rgba(201,168,76,0.25);
   padding: 4rem;
   text-align: center;
