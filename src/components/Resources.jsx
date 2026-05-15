@@ -11,6 +11,8 @@ const blogPosts = [
     type: 'Study Packet',
     title: 'Ancient Civilizations: Rise, Collapse & Legacy',
     meta: 'Mesopotamia · Egypt · Bronze Age Collapse · Greece · Persia · Rome',
+    image: '/images/ancient_civilizations_web_1280x720.webp',
+    imageAlt: 'Ancient Civilizations study thumbnail showing Egypt, Greece, Persia, and Rome',
     component: AncientCivilizationsBlog,
   },
   {
@@ -19,6 +21,8 @@ const blogPosts = [
     type: 'Historical Record',
     title: 'The Melanated Peoples of North America: The Original Nations',
     meta: 'Mound Builders · Cahokia · Trade Networks · Colonization & Survival',
+    image: '/images/melanatedpeopleofnorth.png',
+    imageAlt: 'Collage for The Melanated Peoples of North America',
     component: MelanatedPeoplesBlog,
   },
   {
@@ -42,19 +46,25 @@ const videos = [
 const lessons = [
   {
     icon: '📚',
+    image: '/images/ancient_civilizations_web_1280x720.webp',
+    imageAlt: 'Ancient Civilizations study packet thumbnail',
     type: 'From: Ancient Civilizations Study Packet',
-    title: 'Ancient Civilizations: Rise, Collapse & Rebirth',
-    meta: 'Grades 6–12 · 3 class periods',
+    title: 'Ancient Civilizations Study Packet',
+    meta: 'Grades 6–12 · Packet-aligned lesson',
     objectives: [
-      'Identify the geographic and agricultural foundations of Mesopotamia and Ancient Egypt',
-      'Explain the causes of the Late Bronze Age Collapse (1200 BCE)',
-      'Compare governance systems: democracy in Athens vs. empire in Persia and Rome',
-      'Trace how culture spread through Alexander\'s conquests (cultural diffusion)',
+      'Mesopotamia: irrigation, writing, city-states, law codes, and the risks of open geography',
+      'Ancient Egypt: Nile agriculture, centralized government, and the stability created by natural barriers',
+      'Sea Peoples & Collapse: migrations, invasions, trade breakdowns, and environmental stress around 1200 BCE',
+      'Rise of New Civilizations: Phoenicians, Neo-Assyrians, Neo-Babylonians, Greeks, Persians, and Romans',
+      'Classical Greece, Persia, Rome, and Alexander the Great as key legacy units in the packet',
     ],
-    keyTopics: 'Mesopotamia · Ancient Egypt · Sea Peoples · Classical Greece · Persian Empire · Rome · Alexander the Great',
+    keyTopics: 'Mesopotamia · Ancient Egypt · Sea Peoples · Late Bronze Age Collapse · Classical Greece · Persia · Rome · Alexander the Great',
+    concepts: ['Civilization', 'Empire', 'Democracy', 'Collapse', 'Cultural Diffusion'],
   },
   {
     icon: '🌎',
+    image: '/images/melanatedpeopleofnorth.png',
+    imageAlt: 'Melanated Peoples of North America lesson thumbnail',
     type: 'From: Melanated Peoples of North America',
     title: 'Indigenous North America: Cities, Knowledge & Survival',
     meta: 'Grades 6–12 · 3 class periods',
@@ -129,7 +139,13 @@ export default function Resources() {
           <div className="blog-progress-bar" style={{ width: `${progress}%` }} />
           <div className="blog-nav-bar">
             <a href="#resources" className="blog-nav-logo" onClick={closeBlog} aria-label="Back to HistoricReflections">
-              Historic<span>Reflections</span>
+              <img
+                src="/images/logoimage.png"
+                alt=""
+                aria-hidden="true"
+                className="blog-nav-logo-mark"
+              />
+              <span className="blog-nav-logo-text">Historic<span>Reflections</span></span>
             </a>
             <button
               className="blog-close-btn"
@@ -181,6 +197,13 @@ export default function Resources() {
                 onClick={() => setActiveBlog(b.id)}
                 aria-label={`Open: ${b.title}`}
               >
+                <div className={`doc-thumb-frame${b.image ? '' : ' doc-thumb-frame-fallback'}`}>
+                  {b.image ? (
+                    <img src={b.image} alt={b.imageAlt} className="doc-thumb-image" />
+                  ) : (
+                    <div className="doc-thumb-fallback" aria-hidden="true">{b.icon}</div>
+                  )}
+                </div>
                 <div className="doc-type"><span className="doc-type-icon">{b.icon}</span> {b.type}</div>
                 <div className="doc-title">{b.title}</div>
                 <div className="doc-meta">{b.meta}</div>
@@ -215,6 +238,11 @@ export default function Resources() {
           <div className="doc-grid">
             {lessons.map((l, i) => (
               <div className="doc-card lesson-card" key={i}>
+                {l.image && (
+                  <div className="doc-thumb-frame lesson-thumb-frame">
+                    <img src={l.image} alt={l.imageAlt} className="doc-thumb-image" />
+                  </div>
+                )}
                 <div className="doc-type"><span className="doc-type-icon">{l.icon}</span> {l.type}</div>
                 <div className="doc-title">{l.title}</div>
                 <div className="doc-meta">{l.meta}</div>
@@ -223,6 +251,16 @@ export default function Resources() {
                     <li key={j}>{obj}</li>
                   ))}
                 </ul>
+                {l.concepts && (
+                  <div className="lesson-concepts-wrap">
+                    <div className="lesson-concepts-label">Key Concepts Tracker</div>
+                    <div className="lesson-concepts">
+                      {l.concepts.map((concept) => (
+                        <span className="lesson-concept-chip" key={concept}>{concept}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div className="lesson-topics">{l.keyTopics}</div>
               </div>
             ))}

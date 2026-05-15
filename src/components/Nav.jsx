@@ -21,7 +21,15 @@ export default function Nav() {
 
   return (
     <nav id="navbar" className={scrolled ? 'scrolled' : ''}>
-      <a href="#hero" className="nav-logo" onClick={closeMenu}>Historic<span>Reflections</span></a>
+      <a href="#hero" className="nav-logo" onClick={closeMenu}>
+        <img
+          src="/images/logoimage.png"
+          alt=""
+          aria-hidden="true"
+          className="nav-logo-mark"
+        />
+        <span className="nav-logo-text">Historic<span>Reflections</span></span>
+      </a>
       <button
         className={`nav-hamburger ${menuOpen ? 'open' : ''}`}
         onClick={() => setMenuOpen(o => !o)}
