@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="hero-bg">
         <img
           className="hero-bg-img"
-          src="/images/figureshero.png"
+          src="/images/background.png"
           alt=""
           aria-hidden="true"
         />
