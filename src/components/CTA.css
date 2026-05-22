@@ -59,6 +59,14 @@
 }
 .email-submit:hover { background: linear-gradient(135deg, var(--gold-light), var(--gold)); }
 .email-submit.joined { background: linear-gradient(135deg, #4A8A4A, #2A5A2A); color: #fff; }
+.email-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+.cta-error {
+  font-size: 0.9rem;
+  color: #e07070;
+  margin-top: 0.8rem;
+  font-style: italic;
+  position: relative;
+}
 @media (max-width: 900px) {
   #cta-section { padding: 5rem 1.5rem; }
   .email-form { flex-direction: column; }

@@ -4,6 +4,9 @@ import AncientCivilizationsBlog from './Blog/AncientCivilizationsBlog';
 import MelanatedPeoplesBlog from './Blog/MelanatedPeoplesBlog';
 import GenocideLandGrabBlog from './Blog/GenocideLandGrabBlog';
 
+// 🔑 FREE email setup: go to web3forms.com → enter judiahmel@gmail.com → paste the key you receive here
+const WEB3FORMS_KEY = '8d363fc4-7d0d-4f5b-a52e-9e06fff89702';
+
 const blogPosts = [
   {
     id: 'ancient-civilizations',
@@ -91,11 +94,29 @@ const lessons = [
   },
 ];
 
+const ebooks = [
+  {
+    id: 'melanated-peoples-ebook',
+    cover: '/images/ebook%20image.png',
+    title: 'The History of the Melanated Peoples of North America',
+    subtitle: 'Ancient Civilizations, Indigenous Nations & Cultural Legacy',
+    description: 'A comprehensive journey through the pre-contact civilizations, mound-builder societies, trade networks, and enduring cultural legacies of melanated peoples across North America.',
+    tags: ['Indigenous History', 'North America', 'Mound Builders'],
+    price: 'Free',
+    downloadUrl: '/pdfdata/history_melanated_peoples_north_america.pdf',
+    featured: true,
+  },
+];
+
 
 export default function Resources() {
   const [activeTab, setActiveTab] = useState('documents');
   const [activeBlog, setActiveBlog] = useState(null);
   const [progress, setProgress] = useState(0);
+  const [ebookSearch, setEbookSearch] = useState('');
+  const [ebookModal, setEbookModal] = useState(false);
+  const [modalForm, setModalForm] = useState({ name: '', email: '' });
+  const [modalState, setModalState] = useState('idle'); // idle | submitting | done | error
   const wrapperRef = useRef(null);
 
   const closeBlog = useCallback(() => {
@@ -120,6 +141,21 @@ export default function Resources() {
       document.body.style.overflow = '';
     };
   }, [activeBlog, closeBlog]);
+
+  // Close ebook modal on Escape + lock body scroll
+  useEffect(() => {
+    if (!ebookModal) { document.body.style.overflow = ''; return; }
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setEbookModal(false);
+        setModalForm({ name: '', email: '' });
+        setModalState('idle');
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
+  }, [ebookModal]);
 
   // Reading progress bar
   const handleScroll = useCallback(() => {
@@ -161,10 +197,50 @@ export default function Resources() {
     }
   }
 
+  function closeEbookModal() {
+    setEbookModal(false);
+    setModalForm({ name: '', email: '' });
+    setModalState('idle');
+  }
+
+  async function handleEbookDownload(e) {
+    e.preventDefault();
+    setModalState('submitting');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: 'New Free eBook Request — Historic Reflections',
+          from_name: 'Historic Reflections Website',
+          name: modalForm.name,
+          email: modalForm.email,
+          message: `${modalForm.name} requested the free eBook download.\n\nSend follow-up to: ${modalForm.email}`,
+          replyto: modalForm.email,
+        }),
+      });
+      const data = await res.json();
+      setModalState(data.success ? 'done' : 'error');
+    } catch {
+      setModalState('error');
+    }
+  }
+
+  const filteredEbooks = ebooks.filter(book => {
+    const q = ebookSearch.toLowerCase();
+    return !q ||
+      book.title.toLowerCase().includes(q) ||
+      book.subtitle.toLowerCase().includes(q) ||
+      book.description.toLowerCase().includes(q) ||
+      book.tags.some(t => t.toLowerCase().includes(q));
+  });
+
   const tabs = [
     { key: 'documents', label: '📚 Study Resources' },
     { key: 'videos', label: '🎬 Video Library' },
     { key: 'lessons', label: '🏫 Lesson Plans' },
+    { key: 'ebooks', label: '📖 eBooks' },
   ];
 
   return (
@@ -264,6 +340,127 @@ export default function Resources() {
                 <div className="lesson-topics">{l.keyTopics}</div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'ebooks' && (
+        <div className="tab-panel active">
+          <div className="ebook-search-wrap">
+            <span className="ebook-search-icon" aria-hidden="true">🔍</span>
+            <input
+              className="ebook-search-input"
+              type="text"
+              placeholder="Search titles, topics, keywords…"
+              value={ebookSearch}
+              onChange={e => setEbookSearch(e.target.value)}
+              aria-label="Search eBooks"
+            />
+            {ebookSearch && (
+              <button className="ebook-search-clear" onClick={() => setEbookSearch('')} aria-label="Clear search">✕</button>
+            )}
+          </div>
+          {filteredEbooks.length === 0 && (
+            <div className="ebook-empty">No eBooks found matching "{ebookSearch}"</div>
+          )}
+          <div className="ebook-grid">
+            {filteredEbooks.map(book => (
+              <div className={`ebook-card${book.featured ? ' ebook-card--featured' : ''}`} key={book.id}>
+                <div className="ebook-cover-frame">
+                  {book.cover ? (
+                    <img src={book.cover} alt={book.title} className="ebook-cover-img" />
+                  ) : (
+                    <div className="ebook-cover-placeholder">
+                      <span className="ebook-placeholder-icon" aria-hidden="true">📖</span>
+                      <span className="ebook-placeholder-title">{book.title}</span>
+                    </div>
+                  )}
+                  {book.featured && <span className="ebook-featured-badge">Featured</span>}
+                </div>
+                <div className="ebook-body">
+                  <div className="ebook-tags">
+                    {book.tags.map(tag => <span className="ebook-tag" key={tag}>{tag}</span>)}
+                  </div>
+                  <div className="ebook-title">{book.title}</div>
+                  <div className="ebook-subtitle">{book.subtitle}</div>
+                  <p className="ebook-desc">{book.description}</p>
+                  <div className="ebook-footer">
+                    <span className="ebook-price">{book.price}</span>
+                    <button
+                      className="ebook-cta-btn"
+                      onClick={() => setEbookModal(true)}
+                      aria-label={`Get free copy: ${book.title}`}
+                    >
+                      ↓ Get Free Copy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {ebookModal && (
+        <div className="ebook-modal-backdrop" onClick={closeEbookModal} role="dialog" aria-modal="true" aria-label="Get free eBook">
+          <div className="ebook-modal" onClick={e => e.stopPropagation()}>
+            <button className="ebook-modal-close" onClick={closeEbookModal} aria-label="Close">✕</button>
+            {modalState !== 'done' ? (
+              <>
+                <div className="ebook-modal-preview">
+                  <img src="/images/ebook%20image.png" alt="eBook cover" className="ebook-modal-cover" />
+                </div>
+                <div className="ebook-modal-body">
+                  <div className="ebook-modal-label">Free Digital Download</div>
+                  <h3 className="ebook-modal-title">The History of the Melanated Peoples of North America</h3>
+                  <p className="ebook-modal-sub">Enter your details below to access your free copy.</p>
+                  <form className="ebook-modal-form" onSubmit={handleEbookDownload}>
+                    <input
+                      className="ebook-modal-input"
+                      type="text"
+                      placeholder="Your full name"
+                      required
+                      value={modalForm.name}
+                      onChange={e => setModalForm(f => ({ ...f, name: e.target.value }))}
+                    />
+                    <input
+                      className="ebook-modal-input"
+                      type="email"
+                      placeholder="Your email address"
+                      required
+                      value={modalForm.email}
+                      onChange={e => setModalForm(f => ({ ...f, email: e.target.value }))}
+                    />
+                    {modalState === 'error' && (
+                      <p className="ebook-modal-error">Something went wrong — please try again.</p>
+                    )}
+                    <button
+                      type="submit"
+                      className="ebook-modal-submit"
+                      disabled={modalState === 'submitting'}
+                    >
+                      {modalState === 'submitting' ? 'Please wait…' : '↓ Get Free Download'}
+                    </button>
+                  </form>
+                </div>
+              </>
+            ) : (
+              <div className="ebook-modal-success">
+                <div className="ebook-modal-success-icon">✓</div>
+                <h3 className="ebook-modal-title">Your download is ready!</h3>
+                <p className="ebook-modal-sub">Thank you, {modalForm.name}. Click below to save your copy.</p>
+                <a
+                  href="/pdfdata/history_melanated_peoples_north_america.pdf"
+                  className="ebook-modal-submit"
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ↓ Download PDF Now
+                </a>
+                <button className="ebook-modal-dismiss" onClick={closeEbookModal}>Close</button>
+              </div>
+            )}
           </div>
         </div>
       )}
