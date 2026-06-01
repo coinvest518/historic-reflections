@@ -34,6 +34,8 @@ const blogPosts = [
     type: 'Historical Document',
     title: 'Genocide, Land Grab & Denationalization in the Americas',
     meta: 'Doctrine of Discovery · Indian Removal Act · Boarding Schools · Resistance',
+    image: '/images/destination.png',
+    imageAlt: 'Destination image for Genocide, Land Grab & Denationalization in the Americas',
     component: GenocideLandGrabBlog,
   },
 ];
@@ -81,6 +83,8 @@ const lessons = [
   },
   {
     icon: '⚖️',
+    image: '/images/destination.png',
+    imageAlt: 'Destination image for Genocide, Land Grab & Denationalization lesson plan',
     type: 'From: Genocide, Land Grab & Denationalization',
     title: 'Colonialism & Its Consequences in the Americas',
     meta: 'Grades 9–12 · 5-day unit',
