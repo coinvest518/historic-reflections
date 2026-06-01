@@ -195,6 +195,11 @@ export default function Resources() {
               ← Back to Resources
             </button>
           </div>
+          {blog.image && (
+            <div className="blog-hero-banner">
+              <img src={blog.image} alt={blog.imageAlt || ''} className="blog-hero-banner-img" />
+            </div>
+          )}
           <BlogComponent />
         </div>
       );
