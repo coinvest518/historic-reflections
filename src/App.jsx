@@ -1,4 +1,5 @@
 import './App.css'
+import { Analytics } from '@vercel/analytics/react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Mission from './components/Mission'
@@ -15,6 +16,7 @@ import Footer from './components/Footer'
 function App() {
   return (
     <>
+      <Analytics />
       <Nav />
       <Hero />
       <Mission />
