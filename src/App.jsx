@@ -1,35 +1,14 @@
 import './App.css'
-import { Analytics } from '@vercel/analytics/react'
-import Nav from './components/Nav'
-import Hero from './components/Hero'
-import Mission from './components/Mission'
-import AncientShowcase from './components/AncientShowcase'
-import Civilizations from './components/Civilizations'
-import Women from './components/Women'
-import NorthAmerica from './components/NorthAmerica'
-import Timeline from './components/Timeline'
-import Resources from './components/Resources'
-import Quote from './components/Quote'
-import CTA from './components/CTA'
-import Footer from './components/Footer'
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import About from './pages/About'
 
 function App() {
   return (
-    <>
-      <Analytics />
-      <Nav />
-      <Hero />
-      <Mission />
-      <AncientShowcase />
-      <Civilizations />
-      <Women />
-      <NorthAmerica />
-      <Timeline />
-      <Resources />
-      <Quote />
-      <CTA />
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
   )
 }
 

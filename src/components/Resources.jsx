@@ -41,10 +41,18 @@ const blogPosts = [
 ];
 
 const videos = [
-  { thumb: '𓂀', title: 'The Queens of Ancient Nubia — Full Documentary', meta: 'YouTube · 58 min · Ancient History' },
-  { thumb: '🦅', title: 'Indigenous Leaders of the Americas', meta: 'YouTube · 44 min · Indigenous History' },
-  { thumb: '🌿', title: 'Songlines: Aboriginal Navigation & Knowledge Systems', meta: 'YouTube · 32 min · Aboriginal Australia' },
-  { thumb: '📚', title: 'Timbuktu & African Intellectual Tradition', meta: 'Zoom Recording · 1h 15min · Dr. Fatima Sissoko' },
+  { 
+    id: 'featured-video',
+    thumb: '🎥', 
+    title: 'Hidden Histories: Reclaiming Narratives of Melanated Peoples', 
+    meta: 'YouTube · Featured Presentation',
+    youtubeId: 'NgBDVGgxsj0',
+    featured: true
+  },
+  { thumb: '𓂀', title: 'The Queens of Ancient Nubia — Full Documentary', meta: 'YouTube · 58 min · Ancient History', youtubeId: 'pjxz_JnGa2s' },
+  { thumb: '🦅', title: 'Indigenous Leaders of the Americas', meta: 'YouTube · 45 min · Indigenous History', youtubeId: '3J6WorwqvV8' },
+  { thumb: '🌿', title: 'Songlines: Aboriginal Navigation & Knowledge Systems', meta: 'YouTube · 38 min · Aboriginal Australia', youtubeId: 'O2j8b91l1f4' },
+  { thumb: '📚', title: 'Timbuktu: Center of Islamic Learning & African Intellectual Tradition', meta: 'YouTube · 22 min · African History', youtubeId: 'pMcMkBqnbBw' },
 ];
 
 // Lesson plans built from the 3 study PDFs
@@ -301,8 +309,33 @@ export default function Resources() {
 
       {activeTab === 'videos' && (
         <div className="tab-panel active">
+          {/* Featured Video Section */}
+          <div className="featured-video-section">
+            {videos.find(v => v.featured) && (
+              <div className="featured-video-wrapper">
+                <h3 className="featured-label">Featured Presentation</h3>
+                <div className="video-player-container">
+                  <iframe
+                    width="100%"
+                    height="600"
+                    src={`https://www.youtube.com/embed/${videos.find(v => v.featured)?.youtubeId}`}
+                    title={videos.find(v => v.featured)?.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  ></iframe>
+                </div>
+                <p className="featured-video-title">{videos.find(v => v.featured)?.title}</p>
+                <p className="featured-video-meta">{videos.find(v => v.featured)?.meta}</p>
+              </div>
+            )}
+          </div>
+
+          {/* Other Videos Grid */}
+          <h3 className="other-videos-label">Other Recommended Videos</h3>
           <div className="video-grid">
-            {videos.map((v, i) => (
+            {videos.filter(v => !v.featured).map((v, i) => (
               <div className="video-card" key={i}>
                 <div className="video-thumb">
                   <div className="video-thumb-text">{v.thumb}</div>

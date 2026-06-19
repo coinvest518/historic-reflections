@@ -167,3 +167,22 @@ nav.scrolled {
     height: 34px;
   }
 }
+
+/* Active link styles */
+.nav-links a.active {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .nav-links a.active {
+    background: rgba(212, 165, 116, 0.1);
+    color: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    padding-left: calc(1.8rem - 3px);
+  }
+}
