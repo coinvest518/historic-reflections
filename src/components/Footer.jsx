@@ -8,6 +8,7 @@ export default function Footer() {
       <ul className="footer-links">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
+        <li><Link to="/mission">Mission</Link></li>
         <li><Link to="/blog">Blog</Link></li>
         <li><Link to="/podcast">Podcast</Link></li>
       </ul>

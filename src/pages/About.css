@@ -23,9 +23,18 @@
   font-family: 'Cinzel Decorative', serif;
   font-size: clamp(2rem, 4vw, 3.2rem);
   color: var(--gold, #E8C461);
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
   letter-spacing: 0.03em;
   text-shadow: 0 0 40px rgba(232,196,97,0.3);
+}
+
+.about-hero-founder {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  color: var(--text-bright, #FFFAEC);
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  opacity: 0.7;
 }
 
 .about-hero-tagline {
@@ -201,6 +210,24 @@
   border: 1px solid rgba(201,168,76,0.15);
 }
 
+.founder-name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  color: var(--gold, #E8C461);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+
+.founder-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: var(--text-bright, #FFFAEC);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  opacity: 0.7;
+}
+
 .founder-greeting {
   font-size: 1.1rem !important;
   line-height: 1.9 !important;
@@ -257,12 +284,23 @@
   justify-content: center;
 }
 
+.image-banner-container.portrait {
+  max-height: none;
+}
+
 .image-banner-img {
   width: 100%;
   height: auto;
   max-height: 500px;
   object-fit: cover;
   display: block;
+}
+
+.image-banner-container.portrait .image-banner-img {
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+  width: 100%;
 }
 
 .image-banner-overlay {
@@ -459,6 +497,10 @@
 
   .image-banner-container {
     max-height: 350px;
+  }
+
+  .image-banner-container.portrait {
+    max-height: none;
   }
 }
 

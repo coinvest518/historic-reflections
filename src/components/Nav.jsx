@@ -50,6 +50,7 @@ export default function Nav() {
       <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
         <li><Link to="/" className={isActive('/') ? 'active' : ''} onClick={closeMenu}>Home</Link></li>
         <li><Link to="/about" className={isActive('/about') ? 'active' : ''} onClick={closeMenu}>About</Link></li>
+        <li><Link to="/mission" className={isActive('/mission') ? 'active' : ''} onClick={closeMenu}>Mission</Link></li>
         <li><Link to="/blog" className={isActive('/blog') ? 'active' : ''} onClick={closeMenu}>Blog</Link></li>
         <li><Link to="/podcast" className={isActive('/podcast') ? 'active' : ''} onClick={closeMenu}>Podcast</Link></li>
       </ul>

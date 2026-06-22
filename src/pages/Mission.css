@@ -1,0 +1,341 @@
+/* Mission Page Styles */
+
+.mission-page {
+  min-height: 100vh;
+  background: var(--black, #050302);
+}
+
+.mission-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Hero */
+.mission-hero {
+  background: linear-gradient(135deg, var(--deep, #0C0805) 0%, var(--stone, #1F160C) 100%);
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+
+.mission-hero-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--gold, #E8C461);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 40px rgba(232,196,97,0.3);
+}
+
+.mission-hero-sub {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: var(--text-bright, #FFFAEC);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+}
+
+.mission-hero-quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-style: italic;
+  color: var(--gold-light, #F4DC8E);
+  opacity: 0.9;
+}
+
+/* Opening */
+.mission-opening {
+  padding: 3rem 2rem;
+  background: var(--deep, #0C0805);
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+
+.mission-opening-text {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-bright, #FFFAEC);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Evidence List */
+.mission-evidence {
+  padding: 4rem 2rem;
+  background: var(--black, #050302);
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+
+.section-heading {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: var(--gold-light, #F4DC8E);
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+.evidence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.evidence-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.8rem 1.2rem;
+  background: rgba(201,168,76,0.03);
+  border-left: 2px solid rgba(201,168,76,0.15);
+  transition: all 0.3s ease;
+}
+
+.evidence-item:hover {
+  border-left-color: var(--gold, #E8C461);
+  background: rgba(201,168,76,0.06);
+  padding-left: 1.5rem;
+}
+
+.evidence-bullet {
+  color: var(--gold, #E8C461);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.evidence-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-body, #E8DFC8);
+}
+
+/* Purpose Statement */
+.mission-purpose {
+  padding: 4rem 2rem;
+  background: var(--deep, #0C0805);
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+
+.purpose-card {
+  padding: 2.5rem;
+  border: 1px solid rgba(201,168,76,0.15);
+  background: rgba(232,196,97,0.03);
+}
+
+.purpose-text {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-body, #E8DFC8);
+  margin-bottom: 1.5rem;
+}
+
+.purpose-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Tagline Banner */
+.mission-tagline-banner {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, var(--stone, #1F160C) 0%, var(--deep, #0C0805) 100%);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+
+.tagline-block {
+  text-align: center;
+}
+
+.tagline-line {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: var(--text-bright, #FFFAEC);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+
+.tagline-line.highlight {
+  color: var(--gold, #E8C461);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  text-shadow: 0 0 30px rgba(232,196,97,0.2);
+}
+
+.tagline-line:last-child {
+  margin-bottom: 0;
+}
+
+/* Image Banner - reused from About page */
+.mission-image-banner {
+  padding: 0;
+  background: var(--black, #050302);
+}
+
+.image-banner-container {
+  position: relative;
+  width: 100%;
+  max-height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-banner-img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+.image-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5,3,2,0.85), rgba(5,3,2,0.3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.overlay-text {
+  text-align: center;
+}
+
+.overlay-line {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.2rem, 2.8vw, 2rem);
+  color: var(--text-bright, #FFFAEC);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+.overlay-line.strong {
+  color: var(--gold, #E8C461);
+  font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+}
+
+/* CTA */
+.mission-cta {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, var(--stone, #1F160C) 0%, var(--black, #050302) 100%);
+  border-top: 1px solid rgba(201,168,76,0.15);
+  text-align: center;
+}
+
+.cta-invite {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-body, #E8DFC8);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  font-style: italic;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.cta-button.primary {
+  background: var(--gold, #E8C461);
+  color: var(--black, #050302);
+  border: 1px solid var(--gold, #E8C461);
+}
+
+.cta-button.primary:hover {
+  background: transparent;
+  color: var(--gold-light, #F4DC8E);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: var(--text-bright, #FFFAEC);
+  border: 1px solid rgba(201,168,76,0.4);
+}
+
+.cta-button.secondary:hover {
+  border-color: var(--gold, #E8C461);
+  color: var(--gold-light, #F4DC8E);
+  background: rgba(201,168,76,0.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mission-container {
+    padding: 0 1.2rem;
+  }
+
+  .mission-hero {
+    padding: 6rem 1.2rem 3rem;
+  }
+
+  .mission-opening,
+  .mission-evidence,
+  .mission-purpose,
+  .mission-tagline-banner {
+    padding: 2.5rem 0;
+  }
+
+  .evidence-item {
+    padding: 0.6rem 1rem;
+  }
+
+  .purpose-card {
+    padding: 1.5rem;
+  }
+
+  .image-banner-container {
+    max-height: 350px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-hero {
+    padding: 5rem 1rem 2.5rem;
+  }
+
+  .image-banner-container {
+    max-height: 280px;
+  }
+
+  .tagline-line {
+    font-size: 1rem;
+  }
+
+  .tagline-line.highlight {
+    font-size: 1.2rem;
+  }
+}

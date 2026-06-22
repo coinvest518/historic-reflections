@@ -25,6 +25,7 @@ export default function About() {
         <section className="about-hero">
           <div className="about-hero-inner">
             <h1 className="about-hero-title">{creatorData.name}</h1>
+            <p className="about-hero-founder">by Judiah Moore El</p>
             <p className="about-hero-tagline">{creatorData.tagline}</p>
             <p className="about-hero-quote">{creatorData.welcome.quote}</p>
           </div>
@@ -88,6 +89,8 @@ export default function About() {
             {activeTab === 'founder' && (
               <div className="tab-content animate-in">
                 <div className="founder-intro">
+                  <h3 className="founder-name">Judiah Moore El</h3>
+                  <p className="founder-title">Independent Historical Researcher, Writer & Educator</p>
                   <p className="founder-greeting">{creatorData.philosophy.intro}</p>
                 </div>
 
@@ -125,12 +128,12 @@ export default function About() {
           </div>
         </section>
 
-        {/* "We Are Still Here" Image Statement */}
+        {/* "Past Policies" Image Statement */}
         <section className="about-image-banner">
-          <div className="image-banner-container">
+          <div className="image-banner-container portrait">
             <img 
-              src="/images/we are stil here.png" 
-              alt="We Are Still Here - Our History. Our Lands. Our Nations. Our Future." 
+              src="/images/past policies.png" 
+              alt="Past Policies - Historical Examination" 
               className="image-banner-img"
             />
             <div className="image-banner-overlay">
@@ -139,10 +142,10 @@ export default function About() {
           </div>
         </section>
 
-        {/* Expertise Grid */}
+        {/* Focus Areas */}
         <section className="about-expertise">
           <div className="container">
-            <h2 className="section-title-centered">Areas of Research & Expertise</h2>
+            <h2 className="section-title-centered">Areas of Research & Focus</h2>
             <div className="expertise-grid">
               {creatorData.expertise.map((area, index) => (
                 <div key={index} className="expertise-card">
