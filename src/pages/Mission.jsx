@@ -95,8 +95,8 @@ export default function Mission() {
         <section className="mission-image-banner">
           <div className="image-banner-container">
             <img 
-              src="/images/we are stil here.png" 
-              alt="We Are Still Here - Our History. Our Lands. Our Nations. Our Future." 
+              src="/images/past policies.png" 
+              alt="Past Policies - Historical Examination" 
               className="image-banner-img"
             />
             <div className="image-banner-overlay">

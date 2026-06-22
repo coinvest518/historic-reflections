@@ -32,11 +32,11 @@ export default function Blog() {
               Examining the historical record as completely as possible — recovering overlooked voices, 
               and encouraging every reader to investigate the evidence for themselves.
             </p>
-            {/* "We Are Still Here" banner */}
+            {/* "Past Policies" banner */}
             <div className="blog-brand-banner">
               <img 
-                src="/images/we are stil here.png" 
-                alt="We Are Still Here" 
+                src="/images/past policies.png" 
+                alt="Past Policies - Historical Examination" 
                 className="blog-brand-img"
               />
             </div>
@@ -112,8 +112,8 @@ export default function Blog() {
 
               <div className="sidebar-widget mission-widget">
                 <img 
-                  src="/images/we are stil here.png" 
-                  alt="We Are Still Here" 
+                  src="/images/past policies.png" 
+                  alt="Past Policies - Historical Examination" 
                   className="sidebar-brand-img"
                 />
                 <p className="mission-statement-sidebar">
