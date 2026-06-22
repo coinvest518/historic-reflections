@@ -14,7 +14,7 @@ export default function About() {
   const tabs = [
     { id: 'purpose', label: 'Our Purpose' },
     { id: 'founder', label: 'About the Founder' },
-    { id: 'invitation', label: 'Invitation & Mission' }
+    { id: 'invitation', label: 'Invitation & Closing' }
   ]
 
   return (
@@ -58,7 +58,7 @@ export default function About() {
         {/* Tab Content */}
         <section className="about-content-section">
           <div className="container">
-            {/* Tab 1: Our Purpose (welcome + purpose + central question + mission) */}
+            {/* Tab 1: Our Purpose (welcome + purpose + central question) */}
             {activeTab === 'purpose' && (
               <div className="tab-content animate-in">
                 <div className="tab-section">
@@ -76,11 +76,6 @@ export default function About() {
                     {creatorData.centralQuestion.content}
                   </blockquote>
                   <p className="tab-section-intro">{creatorData.centralQuestion.description}</p>
-                </div>
-
-                <div className="tab-section accent-border">
-                  <h3 className="tab-subheading">{creatorData.mission.title}</h3>
-                  <p className="mission-text">{creatorData.mission.content}</p>
                 </div>
               </div>
             )}
@@ -105,7 +100,7 @@ export default function About() {
               </div>
             )}
 
-            {/* Tab 3: Invitation & Mission */}
+            {/* Tab 3: Invitation & Closing */}
             {activeTab === 'invitation' && (
               <div className="tab-content animate-in">
                 <div className="tab-section">
