@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { creatorData } from '../data/creatorData'
@@ -9,62 +9,140 @@ export default function About() {
     window.scrollTo(0, 0)
   }, [])
 
+  const [activeTab, setActiveTab] = useState('purpose')
+
+  const tabs = [
+    { id: 'purpose', label: 'Our Purpose' },
+    { id: 'founder', label: 'About the Founder' },
+    { id: 'invitation', label: 'Invitation & Mission' }
+  ]
+
   return (
     <>
       <Nav />
       <main className="about-page">
         {/* Hero Section */}
         <section className="about-hero">
-          <div className="about-hero-content">
-            <h1>About {creatorData.name}</h1>
-            <p className="about-tagline">{creatorData.tagline}</p>
+          <div className="about-hero-inner">
+            <h1 className="about-hero-title">{creatorData.name}</h1>
+            <p className="about-hero-tagline">{creatorData.tagline}</p>
+            <p className="about-hero-quote">{creatorData.welcome.quote}</p>
           </div>
         </section>
 
-        {/* Profile Section */}
-        <section className="about-profile">
+        {/* Welcome Intro */}
+        <section className="about-intro">
           <div className="container">
-            <div className="profile-grid">
-              <div className="profile-image-wrapper">
-                <div className="profile-placeholder">
-                  <span>📖</span>
-                </div>
-                <p className="profile-caption">Historian & Cultural Researcher</p>
-              </div>
-
-              <div className="profile-info">
-                <h2>{creatorData.name}</h2>
-                <p className="profile-title">{creatorData.title}</p>
-
-                <div className="credentials">
-                  <p><strong>Credentials:</strong></p>
-                  <ul>
-                    <li>{creatorData.credentials.degree}</li>
-                    <li>{creatorData.credentials.university}</li>
-                    <li>Specialization: {creatorData.credentials.specialization}</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <p className="about-intro-text">{creatorData.welcome.intro}</p>
           </div>
         </section>
 
-        {/* Bio Narrative */}
-        <section className="about-bio">
+        {/* Tab Navigation - Clean 3-tab design */}
+        <section className="about-tabs-section">
           <div className="container">
-            <h2>About This Work</h2>
-            <div className="bio-content">
-              {creatorData.bio.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+            <div className="tabs-nav">
+              {tabs.map(tab => (
+                <button
+                  key={tab.id}
+                  className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  {tab.label}
+                </button>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Expertise */}
+        {/* Tab Content */}
+        <section className="about-content-section">
+          <div className="container">
+            {/* Tab 1: Our Purpose (welcome + purpose + central question + mission) */}
+            {activeTab === 'purpose' && (
+              <div className="tab-content animate-in">
+                <div className="tab-section">
+                  <p className="tab-section-intro">{creatorData.purpose.content[0]}</p>
+                </div>
+
+                <div className="tab-section highlighted">
+                  <p className="emphasis-text">{creatorData.purpose.content[1]}</p>
+                  <p>{creatorData.purpose.content[2]}</p>
+                </div>
+
+                <div className="tab-section">
+                  <h3 className="tab-subheading">{creatorData.centralQuestion.title}</h3>
+                  <blockquote className="central-question-block">
+                    {creatorData.centralQuestion.content}
+                  </blockquote>
+                  <p className="tab-section-intro">{creatorData.centralQuestion.description}</p>
+                </div>
+
+                <div className="tab-section accent-border">
+                  <h3 className="tab-subheading">{creatorData.mission.title}</h3>
+                  <p className="mission-text">{creatorData.mission.content}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Tab 2: About the Founder */}
+            {activeTab === 'founder' && (
+              <div className="tab-content animate-in">
+                <div className="founder-intro">
+                  <p className="founder-greeting">{creatorData.philosophy.intro}</p>
+                </div>
+
+                {creatorData.philosophy.sections.map((section, idx) => (
+                  <div key={idx} className="tab-section">
+                    <h3 className="tab-subheading">{section.heading}</h3>
+                    {section.content.map((para, pIdx) => (
+                      <p key={pIdx} className="founder-text">{para}</p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Tab 3: Invitation & Mission */}
+            {activeTab === 'invitation' && (
+              <div className="tab-content animate-in">
+                <div className="tab-section">
+                  <h3 className="tab-subheading">{creatorData.invitation.title}</h3>
+                  <div className="invitation-list">
+                    {creatorData.invitation.content.map((item, idx) => (
+                      <p key={idx} className="invitation-item">
+                        {item}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="tab-section closing-section">
+                  <h3 className="tab-subheading">{creatorData.closing.title}</h3>
+                  <p className="closing-text">{creatorData.closing.content}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* "We Are Still Here" Image Statement */}
+        <section className="about-image-banner">
+          <div className="image-banner-container">
+            <img 
+              src="/images/we are stil here.png" 
+              alt="We Are Still Here - Our History. Our Lands. Our Nations. Our Future." 
+              className="image-banner-img"
+            />
+            <div className="image-banner-overlay">
+              <p className="mission-statement-large">{creatorData.closing.missionStatement}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Expertise Grid */}
         <section className="about-expertise">
           <div className="container">
-            <h2>Areas of Expertise</h2>
+            <h2 className="section-title-centered">Areas of Research & Expertise</h2>
             <div className="expertise-grid">
               {creatorData.expertise.map((area, index) => (
                 <div key={index} className="expertise-card">
@@ -75,28 +153,15 @@ export default function About() {
           </div>
         </section>
 
-        {/* Highlights */}
-        <section className="about-highlights">
-          <div className="container">
-            <h2>Impact & Reach</h2>
-            <div className="highlights-grid">
-              {creatorData.highlights.map((highlight, index) => (
-                <div key={index} className="highlight-card">
-                  <div className="highlight-icon">{highlight.icon}</div>
-                  <div className="highlight-stat">{highlight.stat}</div>
-                  <div className="highlight-label">{highlight.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
+        {/* CTA */}
         <section className="about-cta">
           <div className="container">
-            <h2>Support This Work</h2>
-            <p>Join us in reclaiming and celebrating the true history of humanity. Every learner, educator, and supporter makes a difference.</p>
-            <a href="/#cta-section" className="cta-button">Get Involved</a>
+            <h2>Our History. Our Lands. Our Nations. Our Future.</h2>
+            <p>Explore the blog, listen to the podcast, and become a researcher of history.</p>
+            <div className="cta-buttons">
+              <a href="/blog" className="cta-button primary">Read the Blog</a>
+              <a href="/podcast" className="cta-button secondary">Listen to Podcast</a>
+            </div>
           </div>
         </section>
       </main>

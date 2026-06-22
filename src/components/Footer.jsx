@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 export default function Footer() {
@@ -5,14 +6,12 @@ export default function Footer() {
     <footer>
       <div className="footer-logo">HistoricReflections</div>
       <ul className="footer-links">
-        <li><a href="#mission">Mission</a></li>
-        <li><a href="#civilizations">Civilizations</a></li>
-        <li><a href="#north-america">Nations</a></li>
-        <li><a href="#timeline">Timeline</a></li>
-        <li><a href="#resources">Archive</a></li>
-        <li><a href="#cta-section">Join</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/blog">Blog</Link></li>
+        <li><Link to="/podcast">Podcast</Link></li>
       </ul>
-      <div className="footer-copy">© 2026 HistoricReflections · Ancient Histories Reclaimed</div>
+      <div className="footer-copy">© 2026 Historic Reflections · Where History Is Examined, Not Assumed.</div>
     </footer>
   );
 }
