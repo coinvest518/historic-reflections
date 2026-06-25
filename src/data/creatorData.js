@@ -34,7 +34,7 @@ export const creatorData = {
   
   philosophy: {
     title: "About the Founder",
-    intro: "Appellation is Judiah Moore El, and I am an independent historical researcher, writer, educator, and lifelong student of history. While I did not follow the traditional path of earning a university degree, I chose a different path—one rooted in self-directed learning, disciplined research, and an unwavering commitment to seeking truth through evidence.",
+    intro: "My appellation is Judiah Moore El, and I am an independent historical researcher, writer, educator, and lifelong student of history. While I did not follow the traditional path of earning a university degree, I chose a different path—one rooted in self-directed learning, disciplined research, and an unwavering commitment to seeking truth through evidence.",
     sections: [
       {
         heading: "Why I Do This Work",
